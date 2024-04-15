@@ -1,0 +1,627 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0px;
+            padding: 0px;
+            color: white;
+            background: rgb(19, 18, 18);
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        .navigation {
+
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0px 20px;
+            box-shadow: 12px 2px 8px 4px white;
+            margin: 0px 0px 20px 0px;
+        }
+
+        .leftnav {
+            font-size: large;
+            max-width: 50vw;
+        }
+
+        .leftnav li {
+            float: left;
+            margin: 10px;
+            padding: 10px;
+            font-size: 20px;
+            font-weight: bold;
+            list-style: none;
+            cursor: pointer;
+        }
+
+        .leftnav li a {
+            font-style: none;
+            text-decoration: none;
+        }
+
+        .leftnav li a:hover {
+            color: blue;
+            font-size: 21px;
+        }
+
+        .laptop-content a {
+            font-size: 12px;
+            color: red;
+
+        }
+
+        .laptop-content a:hover {
+            color: blue;
+
+        }
+
+        .main {
+            width: 80vw;
+            height: 90vh;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            margin: 7px auto;
+            flex-wrap: wrap;
+
+        }
+
+        .about {
+            width: 80vw;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin: 7px auto;
+            flex-wrap: wrap;
+
+        }
+
+        .exp-box {
+            width: 80vw;
+            display: flex;
+            align-items: center;
+            margin: 7px auto;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            text-align: center;
+
+        }
+
+        .exp-content {
+            text-align: center;
+            width: 900px;
+            height: 500px;
+            border-radius: 10px;
+        }
+
+
+
+        #blue {
+            color: blue;
+        }
+
+        .intro {
+            font-size: 40px;
+
+        }
+
+        .break {
+            box-shadow: 12px 2px 8px 4px white;
+            width: 100%;
+            height: 1px;
+            margin: 50px 0px;
+        }
+
+        .myself {
+            flex-basis: 60%;
+            font-size: 19px;
+        }
+
+        .tab-titles {
+            display: flex;
+            margin: 20px 0px 40px;
+        }
+
+        .tab-links {
+            margin-right: 50px;
+            font-size: 18px;
+            font-weight: 500;
+            cursor: pointer;
+            position: relative;
+            color: grey;
+            text-shadow: 5px 5px 5px 5px red;
+        }
+
+        .tab-links::after {
+            content: "";
+            width: 0%;
+            height: 3px;
+            background: blue;
+            position: absolute;
+            left: 0;
+            bottom: -8px;
+            transition: 1s;
+        }
+
+        .tab-links.active-link::after
+
+        /*not give gap between tablinks and active link class*/
+            {
+            width: 100%;
+        }
+
+        .tab-contents ul li {
+            list-style: none;
+            margin: 10px 0px;
+            font-size: 18px;
+        }
+
+        .tab-contents ul li span {
+            color: blue;
+            font-size: 15px;
+        }
+
+        .tab-contents {
+            display: none;
+        }
+
+        .tab-contents.active-tab {
+            display: block;
+        }
+
+        .laptop-content {
+            background: red;
+            width: 275px;
+            position: relative;
+            bottom: 270px;
+            left: 2px;
+            margin: auto;
+            font-size: 30px;
+        }
+
+        .container {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            column-gap: 30px;
+            row-gap: 40px;
+            max-width: 90vw;
+            margin: 50px auto;
+            color: white;
+
+        }
+
+        .item {
+            width: 400px;
+            height: 400px;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+        }
+
+        .card-box {
+            margin: 20px;
+            width: 300px;
+            height: 400px;
+            perspective: 800px;
+        }
+
+        .card-box:hover>.card {
+            cursor: pointer;
+            transform: rotateY(180deg);
+        }
+
+        .card {
+            height: 100%;
+            width: 100%;
+            position: relative;
+            transition: transform 1500ms;
+            transform-style: preserve-3d;
+        }
+
+        .front,
+        .back {
+            height: 100%;
+            width: 100%;
+            border-radius: 3px;
+            box-shadow: 0 0 5px 2px rgba(50, 50, 50, 0.25);
+            position: absolute;
+            backface-visibility: hidden;
+        }
+
+        .back h1 {
+            color: red;
+        }
+
+        .front {
+
+            background-size: 300px 400px;
+            object-fit: fill;
+        }
+
+        .back {
+            background-color: rgb(46, 46, 46);
+            transform: rotateY(180deg);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 5rem;
+            padding: 10px;
+            background-image: linear-gradient(340deg, blue, purple);
+        }
+
+        /* contact ------------------------------------------------------*/
+        .contact-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 80vw;
+            margin: auto;
+            margin-bottom: 200px;
+            margin-top: 100px;
+            flex-wrap: wrap;
+        }
+
+        .contact-left {
+            flex-basis: 35%;
+        }
+
+        .contact-right {
+            flex-basis: 65%;
+        }
+
+        .contact-left p {
+            margin-top: 30px;
+        }
+
+        .contact-left p i {
+            color: blue;
+            margin-right: 10px;
+        }
+
+        .social-icons {
+            margin-right: 10px;
+
+        }
+
+        .social-icons a {
+            margin-right: 15px;
+            font-size: 30px;
+            color: gray;
+            display: inline-block;
+            text-decoration: none;
+            transition: transform 1s;
+            margin-top: 15px;
+        }
+
+        .social-icons a:hover {
+            color: blue;
+            transform: translateY(-5px);
+        }
+
+        .contact-button {
+            display: inline-block;
+            background-color: blue;
+            width: 150px;
+            height: 50px;
+            border-radius: 10px;
+            border: none;
+            outline: none;
+            transition: all 1s;
+        }
+
+        .contact-button:hover {
+
+            border-radius: 0px;
+
+        }
+
+        .contact-right form {
+            width: 100%;
+        }
+
+        form input,
+        form textarea {
+            width: 50vw;
+            height: 7vh;
+            border: 0;
+            outline: none;
+            background-color: rgb(59, 59, 59);
+            padding: 20px;
+            margin: 15px 0px;
+            color: rgb(207, 207, 207);
+            font-size: 18px;
+            border-radius: 6px;
+        }
+
+        form textarea {
+            height: 21vh;
+        }
+
+        .copyright {
+            width: 100vw;
+            height: 10vh;
+            background-color: rgb(59, 59, 59);
+            text-align: center;
+            padding: 25px 0px;
+            margin: 200px 0px 0px 0px;
+            font-weight: bold;
+            margin-top: 20px;
+        }
+
+        .back h1,
+        p {
+            background-color: transparent;
+            color: white;
+        }
+
+        .back a {
+            background-color: transparent;
+            font-size: 50px;
+        }
+
+        .back a i {
+            color: #FFD43B;
+            background-color: transparent;
+            transition: transform 1s;
+        }
+
+        .back a i:hover {
+            transform: scale(0.5);
+        }
+    </style>
+</head>
+
+<body>
+    <div class="navigation" id="navigation">
+        <div class="rightnav">
+            <h1>Portfolio</h1>
+        </div>
+        <div class="leftnav">
+            <ul>
+                <li><a href="#navigation">Home</a></li>
+                <li><a href="#about">About me</a></li>
+                <li><a href="#experiences">Work Experience</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="main">
+        <div class="intro">
+            Hi , My name is <span id="blue">Rahul</span>
+            <div> and I am Passionate </div>
+            <span id="element"></span>
+        </div>
+        <div class="image">
+            <img style="height: 350px;width: 350px;position: relative; top: -30px;" src="web.png.png" alt="">
+        </div>
+    </div>
+    <div class="break"></div>
+    <div class="about" id="about">
+        <div class="photo">
+            <img style="height: 350px;width: 350px;position: relative; top: px;" src="dog.png" alt="">
+        </div>
+        <div class="myself">
+            <h1 style="font-size: 60px;color:blue;margin-bottom: 20px;">About me</h1>
+            <div>
+                <p style="line-height: 130%;">Hello!! My name is Rahul Thapliyal , I born and brought up in Delhi. I
+                    pursuing B.tech CSE from
+                    Graphic Era Hill University, Dehradun, Uttarakhand. I did my schooling from Laxmi Public School,
+                    Delhi. I have strong foundation in Technical skills, adaptability , and passion for technology with
+                    a solid
+                    foundation in programming languages like Cpp, Python and Web Technologies like Node.js and React. I
+                    have successfully completed projects that demonstrate my ability to solve complex problems and work
+                    efficiently . I thrive in fast-paced environments and am quick to learn new Technologies. I am
+                    enthusiastic about the opportunity to bring my skills to your team, diving in innovation and
+                    delivering impactful results.
+                </p>
+                <div class="tab-titles">
+                    <p class="tab-links active-link" onclick="opentab('skills')">Skills </p>
+                    <p class="tab-links" onclick="opentab('experience')">Achivements</p>
+                    <p class="tab-links" onclick="opentab('education')">Education</p>
+                </div>
+
+                <div class="tab-contents active-tab" id="skills">
+                    <ul>
+                        <li><span>Coding</span><br>Cpp | Python(intermediate)</li>
+                        <li><span>Web Development</span><br>HTML|CSS|Javascript|MERN</li>
+                        <li><span>Machine Learning</span><br>Python and Regression Algorithms</li>
+                    </ul>
+                </div>
+                <div class="tab-contents" id="experience">
+                    <ul>
+                        <li><span>Coding</span><br>Solve 250+ questions in Leetcode and Coding ninja</li>
+                        <li><span>Weekly coding Ninja Test</span><br>Achive 500 rank</li>
+                        <li><span>Typing</span><br>80+ wpm</li>
+                        <li><span>Self-made Projects</span><br>Machine learning and Web Development </li>
+                    </ul>
+                </div>
+                <div class="tab-contents" id="education">
+                    <ul>
+                        <li><span>2020-2024</span><br>B.TECH in Computer Science - 7.5 SGPA<br>Graphic Era Hill
+                            University Dehradun</li>
+                        <li><span>2018</span><br>12th C.B.S.E - 84.4%<br>Laxmi Public Sr. Sec. School</li>
+                        <li><span>2020</span><br>10th C.B.S.E - 86.4%<br>Laxmi Public Sr. Sec. School</li>
+                    </ul>
+                </div>
+            </div>
+            <span id="element"></span>
+        </div>
+    </div>
+    <div class="break" id="experiences"></div>
+    <div class="exp-container">
+        <div class="exp-box">
+
+            <div class="exp-content">
+                <div style="text-align: cente;font-size: 60px;font-weight:1000;color: blue;margin:10px 0px">Experience
+                </div>
+                <img style="max-width: 600px;max-height: 400px;position: relative;" src="laptop.png" alt="">
+                <div class="laptop-content" tyle="position: relative;bottom: 250px ;">
+                    <div>Full Stack Developer Intern-</div>
+                    <div>Mainflow</div>
+                    <pre><a href="https://www.linkedin.com/feed/update/urn:li:activity:7120041383914012672/" target="_blank">Know more</a></pre>
+                    </pre>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="break" id="projects"></div>
+    <h1 style="font-weight: bold;color: blue;text-align: center;font-size: 60px;"> Projects</h1>
+    <div class="container">
+        <div class="item" id="item-1">
+            <div class="card-box">
+                <div class="card">
+                    <div style="background-image: url(clock.jpg);" class="front"></div>
+                    <div class="back">
+                        <h1>Clock Extension
+                        </h1>
+                        <p style="background-color: transparent;">It's a digital clock chrome Extension using HTML,CSS
+                            and Javascript which shows hours,minutes
+                            and second</p>
+                        <a href=""><i class="fa fa-link"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="item" id="item-2">
+            <div class="card-box">
+                <div class="card">
+                    <div style="background-image: url(web.jpg);" class="front"></div>
+                    <div class="back">
+                        <h1>Weather App</h1>
+                        <p>A weather app made using Rapid API in JavaScript. The app tells the current
+                            temperature of any city and some additional information like Air quality and so more.</p>
+                        <a href=""><i class="fa fa-link"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="item" id="item-3">
+            <div class="card-box">
+                <div class="card">
+                    <div style="background-image: url(bargraph.jpg);" class="front"></div>
+                    <div class="back">
+                        <h1>Sorting Visualizer</h1>
+                        <p>Created a website in which we visualize Sorting algorithms like Bubble Sort and Linear sort
+                            in a Histogram using JavaScript,
+                            CSS, HTML which demonstrate strong front-end web development skills through practical
+                            applications.</p>
+                        <a href=""><i class="fa fa-link"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="item" id="item-4">
+            <div class="card-box">
+                <div class="card">
+                    <div style="background-image: url(chat.jpg);" class="front"></div>
+                    <div class="back">
+                        <h1>Chat Application</h1>
+                        <p>Make a chat app in which two users or group of users can massage other's using socket.io ,Node.js,Express.js and mysql</p>
+                        <a href=""><i class="fa fa-link"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="item" id="item-5">
+            <div class="card-box">
+                <div class="card">
+                    <div style="background-image: url(emailspam.jpg);" class="front"></div>
+                    <div class="back">
+                        <h1>Email spam</h1>
+                        <p>Identifying and distinguishing spam SMS and Email using the Machine learning Models to Identifying that which type of message have.</p>
+                        <a href=""><i class="fa fa-link"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="item" id="item-6">
+            <div class="card-box">
+                <div class="card">
+                    <div style="background-image: url(realestate.jpg);" class="front"></div>
+                    <div class="back">
+                        <h1 style="padding: 10px 0px;">Real Estate</h1>
+                        <p>Developed a Supervised Machine learning model using Python in which we implement Regression
+                            algorithms using to predict the actual value of the  prospective properties and decide whether
+                            to invest in them or not.</p>
+                        <a href=""><i class="fa fa-link"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="break" id="contact"></div>
+    <!-----------Contact------------->
+    <div class="contact">
+        <div class="contact-container">
+            <div class="contact-row">
+                <div class="contact-left">
+                    <h1 style="color:blue;" class="contact-me">Contact Me</h1>
+                    <p><i class="fa fa-envelope"></i>rahulthapliyal888@gmail.com</p>
+                    <p><i class="fa fa-phone"></i>0123456789</p>
+                    <div class="social-icons">
+                        <a href=""><i class="fa fa-facebook"></i></a>
+                        <a href=""><i class="fa fa-instagram"></i></a>
+                        <a href=""><i class="fa fa-linkedin"></i></a>
+                        <a href=""><i class="fa fa-envelope"></i></a>
+                    </div>
+                </div>
+                <div class="contact-right">
+                    <form action="post" data-netlify="true">
+                        <input type="text" name="Name" placeholder="Enter your Name" required>
+                        <input type="email" name="email" placeholder="Enter your Email" required>
+                        <textarea name="Message" rows="6" placeholder="Enter your Message"></textarea>
+                        <button type="submit" class="contact-button">Submit</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="copyright">
+            <p style="background-color:rgb(59, 59, 59);">Copyright &copy <i class="fa fa-fire"
+                    style="color: #fb7318;"></i> Rahul Thapliyal</p>
+        </div>
+    </div>
+    <script>
+        var tablinks = document.getElementsByClassName('tab-links');
+        var tabcontents = document.getElementsByClassName('tab-contents');
+        function opentab(tabname) {
+            for (tablink of tablinks) {
+                tablink.classList.remove("active-link");
+            }
+            for (tabcontent of tabcontents) {
+                tabcontent.classList.remove("active-tab");
+            }
+            event.currentTarget.classList.add("active-link");
+            document.getElementById(tabname).classList.add("active-tab");
+        }
+    </script>
+    <!-- Element to contain animated typing -->
+
+
+    <!-- Load library from the CDN -->
+    <script src="https://unpkg.com/typed.js@2.1.0/dist/typed.umd.js"></script>
+
+    <!-- Setup and start animation! -->
+    <script>
+        var typed = new Typed('#element', {
+            strings: ['Software Developer', 'Web Developer', 'Animator'],
+            typeSpeed: 50,
+        });
+    </script>
+</body>
+</body>
+
+</html>
